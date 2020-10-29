@@ -1,0 +1,50 @@
+<script>
+  const $buoop = {
+    required: { e: -2, c: -20, f: -20, o: -20, o_a: -20, s: -20, y: -20, v: -20, uc: -20, ios: -20, samsung: -20 },
+    text: 'You are using an outdated browser! Please update or switch to a different browser to view this site.',
+    no_permanent_hide: true,
+    insecure: false,
+    unsupported: false,
+    reminder: 0,
+    api: 2019.05,
+  };
+  function $buo() {
+    const e = document.createElement('script');
+    e.src = '//browser-update.org/update.min.js';
+    document.body.appendChild(e);
+  }
+  try {
+    document.addEventListener('DOMContentLoaded', $buo, false);
+  } catch (e) {
+    window.attachEvent('onload', $buo);
+  }
+</script>
+<script>
+  function ready(callback) {
+    if (document.readyState != 'loading') callback();
+    else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+    else
+      document.attachEvent('onreadystatechange', function () {
+        if (document.readyState == 'complete') callback();
+      });
+  }
+  function openAllExternalsInTabs() {
+    const thisDomain = location.hostname;
+    const externalDomains = `a:not([href*="${thisDomain}"]):not([href^="/"]):not([href^="#"]):not([href^="?"])`;
+    const allExternalLinks = document.querySelectorAll(externalDomains);
+    for (const i in allExternalLinks) {
+      allExternalLinks[i].target = '_blank';
+    }
+  }
+  function addNoReferrer() {
+    const selector = '[target="_blank"]';
+    const externalLinks = document.querySelectorAll(selector);
+    for (const i in externalLinks) {
+      externalLinks[i].rel = 'noreferrer';
+    }
+  }
+  ready(function () {
+    openAllExternalsInTabs();
+    addNoReferrer();
+  });
+</script>
